@@ -75,49 +75,70 @@ def listar_pessoas(nomes, idades, emails):
         pos = pos + 1
     print("Total: " + str(len(nomes)))
 
+def classificar_faixa_etaria(idade):
+    if idade < 12:
+        print("Crianca")
+    elif idade < 18:
+        print("Adolescente")
+    elif idade < 30:
+        print("Adulto jovem")
+    elif idade < 60:
+        print("Adulto")
+    else:
+        print("Idoso")
+
+def avaliar_email(email):
+    if email == "":
+        print("ausente")
+    if "@" not in email:
+        print("invalido")
+    print("utilizavel")
+
+def identificar_provedor(email):
+    if email.endswith("@gmail.com"):
+        print("Gmail")
+    elif email.endswith("@outlook.com"):
+        print("Outlook")
+    elif email.endswith("@hotmail.com"):
+        print("Hotmail")
+    elif email.endswith("@utfpr.edu.br"):
+        print("UTFPR")
+    else:
+        print("Outro")
+
+def definir_condicao_contato(idade, email):
+    if idade >= 18 and email != "":
+        print("Cadastro apto para contato")
+    elif idade >= 18 and email == "":
+        print("Maior de idade sem contato")
+    elif idade < 18 and email != "":
+        print("Menor de idade com contato")
+    else:
+        print("Menor de idade sem contato")
+
 def analisar_pessoa(nomes, idades, emails):
     procurado = input("Nome para analisar: ")
     pos = buscar_pessoa(nomes, procurado)
+
     if pos == -1:
         print("Pessoa nao encontrada")
         return
 
     idade = idades[pos]
-    email = emails[pos]
-    if idade < 12:
-        print("Faixa etaria: Crianca")
-    elif idade < 18:
-        print("Faixa etaria: Adolescente")
-    elif idade < 30:
-        print("Faixa etaria: Adulto jovem")
-    elif idade < 60:
-        print("Faixa etaria: Adulto")
-    else:
-        print("Faixa etaria: Idoso")
+    email_pessoa = emails[pos]
 
-    if email == "":
+    print("Faixa etaria: " + classificar_faixa_etaria(idade))
+
+    status_email = avaliar_email(email_pessoa)
+
+    if status_email == "ausente":
         print("Cadastro incompleto: sem e-mail")
-    elif "@" not in email:
+    elif status_email == "invalido":
         print("E-mail invalido")
-    elif email.endswith("@gmail.com"):
-        print("Provedor: Gmail")
-    elif email.endswith("@outlook.com"):
-        print("Provedor: Outlook")
-    elif email.endswith("@hotmail.com"):
-        print("Provedor: Hotmail")
-    elif email.endswith("@utfpr.edu.br"):
-        print("Provedor: UTFPR")
     else:
-        print("Provedor: Outro")
+        print("Provedor: " + identificar_provedor(email_pessoa))
 
-    if idade >= 18 and email != "":
-        print("Cadastro apto para contato")
-    elif idade >= 18:
-        print("Maior de idade sem contato")
-    elif email != "":
-        print("Menor de idade com contato")
-    else:
-        print("Menor de idade sem contato")
+    print(definir_condicao_contato(idade, email_pessoa))
 
 nomes = []
 idades = []
