@@ -1,6 +1,9 @@
 # Sistema de Cadastro de Pessoas - versao 2
 # novos requisitos: menu, consulta, alteracao e listagem
 
+import email
+
+
 def exibir_menu():
     print("=========================")
     print(" CADASTRO DE PESSOAS")
@@ -10,6 +13,7 @@ def exibir_menu():
     print("3 - Alterar pessoa")
     print("4 - Listar pessoas")
     print("5 - Sair")
+    print("6 - Analisar pessoa")
     return int(input("Escolha uma opcao: "))
  
 def cadastrar_pessoa(nomes, idades, emails):
@@ -71,7 +75,49 @@ def listar_pessoas(nomes, idades, emails):
         pos = pos + 1
     print("Total: " + str(len(nomes)))
 
+def analisar_pessoa(nomes, idades, emails):
+    procurado = input("Nome para analisar: ")
+    pos = buscar_pessoa(nomes, procurado)
+    if pos == -1:
+        print("Pessoa nao encontrada")
+        return
 
+    idade = idades[pos]
+    email = emails[pos]
+    if idade < 12:
+        print("Faixa etaria: Crianca")
+    elif idade < 18:
+        print("Faixa etaria: Adolescente")
+    elif idade < 30:
+        print("Faixa etaria: Adulto jovem")
+    elif idade < 60:
+        print("Faixa etaria: Adulto")
+    else:
+        print("Faixa etaria: Idoso")
+
+    if email == "":
+        print("Cadastro incompleto: sem e-mail")
+    elif "@" not in email:
+        print("E-mail invalido")
+    elif email.endswith("@gmail.com"):
+        print("Provedor: Gmail")
+    elif email.endswith("@outlook.com"):
+        print("Provedor: Outlook")
+    elif email.endswith("@hotmail.com"):
+        print("Provedor: Hotmail")
+    elif email.endswith("@utfpr.edu.br"):
+        print("Provedor: UTFPR")
+    else:
+        print("Provedor: Outro")
+
+    if idade >= 18 and email != "":
+        print("Cadastro apto para contato")
+    elif idade >= 18:
+        print("Maior de idade sem contato")
+    elif email != "":
+        print("Menor de idade com contato")
+    else:
+        print("Menor de idade sem contato")
 
 nomes = []
 idades = []
@@ -104,7 +150,9 @@ while op != 5:
         listar_pessoas(nomes, idades, emails)
     elif op == 5:
         print("Saindo...") 
+    elif op == 6:
+        analisar_pessoa(nomes, idades, emails)
     else:
         print("Opcao invalida")
- 
+    
 print("Fim do programa")
