@@ -17,6 +17,8 @@ Utilizar um mesmo projeto para aplicar, progressivamente, conceitos e práticas 
 
 ## Execução
 
-Execute o programa pelo terminal:
+Na raiz do projeto, execute o programa pelo terminal:
 
-python cadastro.py
+```bash
+python src/main.py
+```
