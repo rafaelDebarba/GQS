@@ -1,6 +1,7 @@
 """Programa para cadastro de pessoas. Uso didático na disciplina de GQS."""
 
 from cadastro import CadastroPessoas
+from pessoa import Pessoa
 
 def exibir_menu():
     """Exibe o menu principal."""
