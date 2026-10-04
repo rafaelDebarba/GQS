@@ -129,26 +129,32 @@ def analisar_pessoa(cadastro):
             pessoa.getEmail()
         )
 
-gerenciador_cadastro = CadastroPessoas()
+def executar():
+    """Executa o menu principal da  aplicação."""
+    gerenciador_cadastro = CadastroPessoas()
 
-op = 0
+    op = 0
 
-while op != 6:
-    op = exibir_menu()
+    while op != 6:
+        op = exibir_menu()
 
-    if op == 1:
-        cadastrar_pessoa(gerenciador_cadastro)
-    elif op == 2:
-        consultar_pessoa(gerenciador_cadastro)
-    elif op == 3:
-        alterar_pessoa(gerenciador_cadastro)
-    elif op == 4:
-        listar_pessoas(gerenciador_cadastro)
-    elif op == 5:
-        analisar_pessoa(gerenciador_cadastro)
-    elif op == 6:
-        print("Saindo...")
-    else:
-        print("Opcao invalida")
+        if op == 1:
+            cadastrar_pessoa(gerenciador_cadastro)
+        elif op == 2:
+            consultar_pessoa(gerenciador_cadastro)
+        elif op == 3:
+            alterar_pessoa(gerenciador_cadastro)
+        elif op == 4:
+            listar_pessoas(gerenciador_cadastro)
+        elif op == 5:
+            analisar_pessoa(gerenciador_cadastro)
+        elif op == 6:
+            print("Saindo...")
+        else:
+            print("Opcao invalida")
 
-print("Fim do programa")
+    print("Fim do programa")
+
+
+if __name__ == "__main__":
+    executar()
